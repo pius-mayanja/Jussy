@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jussy Fashions | Luxury Fashion Destination</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#000000',
+            secondary: '#f5f5f5',
+            accent: '#d4af37',
+          },
+          fontFamily: {
+            sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+    
+    body {
+      font-family: 'Montserrat', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    
+    .nav-link {
+      position: relative;
+    }
+    
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #000;
+      transition: width 0.3s ease;
+    }
+    
+    .nav-link:hover::after {
+      width: 100%;
+    }
+    
+    .category-card:hover img {
+      transform: scale(1.03);
+    }
+    
+    .product-card {
+      transition: all 0.3s ease;
+    }
+    
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+    
+    .mobile-menu {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.5s ease;
+    }
+    
+    .mobile-menu.open {
+      max-height: 1000px;
+    }
+    
+    .search-bar {
+      width: 0;
+      transition: width 0.3s ease;
+    }
+    
+    .search-bar.open {
+      width: 300px;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-900">
+  <!-- Header -->
+  <header class="sticky top-0 z-50 bg-white border-b border-gray-200">
+    <!-- Top bar -->
+    <div class="bg-black text-white text-xs py-2">
+      <div class="container mx-auto px-4 flex justify-between">
+        <div class="flex space-x-6">
+          <a href="#" class="hover:underline">Free Shipping Worldwide</a>
+          <a href="#" class="hover:underline">Free Returns</a>
+        </div>
+        <div class="flex space-x-6">
+          <a href="#" class="hover:underline">Customer Service</a>
+          <a href="#" class="hover:underline">Store Locator</a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main navigation -->
+    <div class="container mx-auto px-4">
+      <div class="flex items-center justify-between py-4">
+        <!-- Left navigation -->
+        <nav class="hidden lg:flex space-x-8">
+          <a href="#" class="nav-link text-sm font-medium uppercase tracking-wider">New Arrivals</a>
+          <a href="#" class="nav-link text-sm font-medium uppercase tracking-wider">Designers</a>
+          <a href="#" class="nav-link text-sm font-medium uppercase tracking-wider">Clothing</a>
+        </nav>
+        
+        <!-- Logo -->
+        <a href="/" class="text-2xl font-bold tracking-tight absolute left-1/2 transform -translate-x-1/2 lg:static lg:translate-x-0">
+          JUSSY<span class="font-light">FASHIONS</span>
+        </a>
+        
+        <!-- Right navigation -->
+        <div class="flex items-center space-x-6">
+          <div class="relative">
+            <button id="search-toggle" class="p-2">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+            <div id="search-bar" class="search-bar absolute top-full right-0 mt-1 bg-white shadow-lg rounded overflow-hidden">
+              <input type="text" placeholder="Search for designers, products..." class="w-full py-2 px-4 focus:outline-none">
+            </div>
+          </div>
+          
+          <a href="#" class="p-2 relative">
+            <i class="fa-regular fa-heart"></i>
+          </a>
+          
+          <a href="#" class="p-2 relative">
+            <i class="fa-regular fa-user"></i>
+          </a>
+          
+          <a href="#" class="p-2 relative">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="absolute -top-1 -right-1 bg-black text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">2</span>
+          </a>
+          
+          <button id="mobile-menu-toggle" class="lg:hidden p-2">
+            <i class="fa-solid fa-bars"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Secondary navigation -->
+    <nav class="hidden lg:block border-t border-gray-200 py-3">
+      <div class="container mx-auto px-4 flex justify-center space-x-10">
+        <a href="#" class="nav-link text-sm font-medium">Women</a>
+        <a href="#" class="nav-link text-sm font-medium">Men</a>
+        <a href="#" class="nav-link text-sm font-medium">Kids</a>
+        <a href="#" class="nav-link text-sm font-medium">Shoes</a>
+        <a href="#" class="nav-link text-sm font-medium">Bags</a>
+        <a href="#" class="nav-link text-sm font-medium">Accessories</a>
+        <a href="#" class="nav-link text-sm font-medium">Jewelry</a>
+        <a href="#" class="nav-link text-sm font-medium">Beauty</a>
+      </div>
+    </nav>
+    
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="mobile-menu lg:hidden bg-white">
+      <div class="container mx-auto px-4 py-4">
+        <div class="grid grid-cols-2 gap-4 mb-6">
+          <a href="#" class="block py-3 px-4 border border-gray-200 text-center font-medium hover:bg-gray-50">Women</a>
+          <a href="#" class="block py-3 px-4 border border-gray-200 text-center font-medium hover:bg-gray-50">Men</a>
+          <a href="#" class="block py-3 px-4 border border-gray-200 text-center font-medium hover:bg-gray-50">Kids</a>
+          <a href="#" class="block py-3 px-4 border border-gray-200 text-center font-medium hover:bg-gray-50">Shoes</a>
+          <a href="#" class="block py-3 px-4 border border-gray-200 text-center font-medium hover:bg-gray-50">Bags</a>
+          <a href="#" class="block py-3 px-4 border border-gray-200 text-center font-medium hover:bg-gray-50">Accessories</a>
+        </div>
+        
+        <div class="space-y-2">
+          <a href="#" class="block py-2 text-sm font-medium border-b border-gray-100">New Arrivals</a>
+          <a href="#" class="block py-2 text-sm font-medium border-b border-gray-100">Designers</a>
+          <a href="#" class="block py-2 text-sm font-medium border-b border-gray-100">Sale</a>
+          <a href="#" class="block py-2 text-sm font-medium border-b border-gray-100">Magazine</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="relative">
+    <div class="h-[70vh] bg-gray-100 flex items-center">
+      <div class="container mx-auto px-4">
+        <div class="max-w-md">
+          <h1 class="text-4xl md:text-5xl font-light mb-4">Summer Collection 2023</h1>
+          <p class="text-lg mb-8">Discover the season's most coveted pieces from emerging designers and luxury houses.</p>
+          <a href="#" class="inline-block bg-black text-white py-3 px-8 text-sm font-medium tracking-wider hover:bg-gray-800 transition">SHOP NOW</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Categories -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center mb-10">
+        <h2 class="text-2xl font-light">Shop by Category</h2>
+        <a href="#" class="text-sm font-medium hover:underline">View All</a>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div class="category-card group">
+          <div class="aspect-square overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1539109136881-3be0616acf4b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                 alt="Women's Collection" 
+                 class="w-full h-full object-cover transition-transform duration-500">
+          </div>
+          <h3 class="text-lg font-medium mb-1">Women's</h3>
+          <p class="text-sm text-gray-600">New season arrivals</p>
+        </div>
+        
+        <div class="category-card group">
+          <div class="aspect-square overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=880&q=80" 
+                 alt="Men's Collection" 
+                 class="w-full h-full object-cover transition-transform duration-500">
+          </div>
+          <h3 class="text-lg font-medium mb-1">Men's</h3>
+          <p class="text-sm text-gray-600">Contemporary styles</p>
+        </div>
+        
+        <div class="category-card group">
+          <div class="aspect-square overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1601924994987-69e26d50dc26?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" 
+                 alt="Accessories" 
+                 class="w-full h-full object-cover transition-transform duration-500">
+          </div>
+          <h3 class="text-lg font-medium mb-1">Accessories</h3>
+          <p class="text-sm text-gray-600">Bags, shoes & jewelry</p>
+        </div>
+        
+        <div class="category-card group">
+          <div class="aspect-square overflow-hidden mb-4">
+            <img src="https://images.unsplash.com/photo-1595341888016-a392ef81b7de?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1179&q=80" 
+                 alt="Beauty" 
+                 class="w-full h-full object-cover transition-transform duration-500">
+          </div>
+          <h3 class="text-lg font-medium mb-1">Beauty</h3>
+          <p class="text-sm text-gray-600">Skincare & fragrances</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Designers -->
+  <section class="py-16 bg-gray-50">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center mb-10">
+        <h2 class="text-2xl font-light">Featured Designers</h2>
+        <a href="#" class="text-sm font-medium hover:underline">View All</a>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
+        <div class="text-center">
+          <div class="aspect-square bg-gray-200 mb-4 flex items-center justify-center">
+            <span class="text-xl font-bold">GUCCI</span>
+          </div>
+          <h3 class="font-medium">Gucci</h3>
+        </div>
+        
+        <div class="text-center">
+          <div class="aspect-square bg-gray-200 mb-4 flex items-center justify-center">
+            <span class="text-xl font-bold">PRADA</span>
+          </div>
+          <h3 class="font-medium">Prada</h3>
+        </div>
+        
+        <div class="text-center">
+          <div class="aspect-square bg-gray-200 mb-4 flex items-center justify-center">
+            <span class="text-xl font-bold">BALENCIAGA</span>
+          </div>
+          <h3 class="font-medium">Balenciaga</h3>
+        </div>
+        
+        <div class="text-center">
+          <div class="aspect-square bg-gray-200 mb-4 flex items-center justify-center">
+            <span class="text-xl font-bold">SAINT LAURENT</span>
+          </div>
+          <h3 class="font-medium">Saint Laurent</h3>
+        </div>
+        
+        <div class="text-center">
+          <div class="aspect-square bg-gray-200 mb-4 flex items-center justify-center">
+            <span class="text-xl font-bold">BOTTEGA VENETA</span>
+          </div>
+          <h3 class="font-medium">Bottega Veneta</h3>
+        </div>
+        
+        <div class="text-center">
+          <div class="aspect-square bg-gray-200 mb-4 flex items-center justify-center">
+            <span class="text-xl font-bold">VALENTINO</span>
+          </div>
+          <h3 class="font-medium">Valentino</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- New Arrivals -->
+  <section class="py-16">
+    <div class="container mx-auto px-4">
+      <div class="flex justify-between items-center mb-10">
+        <h2 class="text-2xl font-light">New Arrivals</h2>
+        <a href="#" class="text-sm font-medium hover:underline">View All</a>
+      </div>
+      
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <div class="relative mb-4">
+            <img src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80" 
+                 alt="Leather Jacket" 
+                 class="w-full aspect-[3/4] object-cover">
+            <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-black hover:text-white transition">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+          <h3 class="font-medium mb-1">Biker Leather Jacket</h3>
+          <p class="text-sm text-gray-600 mb-2">Saint Laurent</p>
+          <p class="font-medium">$1,890</p>
+        </div>
+        
+        <!-- Product 2 -->
+        <div class="product-card">
+          <div class="relative mb-4">
+            <img src="https://images.unsplash.com/photo-1534030347209-467a5b0ad3e6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                 alt="Silk Dress" 
+                 class="w-full aspect-[3/4] object-cover">
+            <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-black hover:text-white transition">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+          <h3 class="font-medium mb-1">Floral Silk Dress</h3>
+          <p class="text-sm text-gray-600 mb-2">Gucci</p>
+          <p class="font-medium">$2,350</p>
+        </div>
+        
+        <!-- Product 3 -->
+        <div class="product-card">
+          <div class="relative mb-4">
+            <img src="https://images.unsplash.com/photo-1552374196-c4e7ffc6e126?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80" 
+                 alt="Designer Handbag" 
+                 class="w-full aspect-[3/4] object-cover">
+            <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-black hover:text-white transition">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+          <h3 class="font-medium mb-1">Matelassé Leather Bag</h3>
+          <p class="text-sm text-gray-600 mb-2">Bottega Veneta</p>
+          <p class="font-medium">$2,800</p>
+        </div>
+        
+        <!-- Product 4 -->
+        <div class="product-card">
+          <div class="relative mb-4">
+            <img src="https://images.unsplash.com/photo-1549298916-b41d501d3772?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1112&q=80" 
+                 alt="Sneakers" 
+                 class="w-full aspect-[3/4] object-cover">
+            <button class="absolute top-4 right-4 w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-black hover:text-white transition">
+              <i class="fa-regular fa-heart"></i>
+            </button>
+          </div>
+          <h3 class="font-medium mb-1">Logo-print Sneakers</h3>
+          <p class="text-sm text-gray-600 mb-2">Balenciaga</p>
+          <p class="font-medium">$895</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Newsletter -->
+  <section class="py-16 bg-black text-white">
+    <div class="container mx-auto px-4 max-w-3xl text-center">
+      <h2 class="text-2xl font-light mb-4">Join Our Newsletter</h2>
+      <p class="mb-8">Sign up for exclusive access to new collections, special events and private sales.</p>
+      
+      <form class="flex flex-col sm:flex-row gap-4 max-w-xl mx-auto">
+        <input type="email" placeholder="Enter your email address" class="flex-grow py-3 px-4 text-gray-900 focus:outline-none">
+        <button type="submit" class="bg-white text-black py-3 px-8 font-medium hover:bg-gray-200 transition">SUBSCRIBE</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-100 pt-16 pb-8">
+    <div class="container mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+        <div>
+          <h3 class="text-lg font-medium mb-4">Customer Service</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">Contact Us</a></li>
+            <li><a href="#" class="hover:underline">Delivery & Returns</a></li>
+            <li><a href="#" class="hover:underline">Payment Methods</a></li>
+            <li><a href="#" class="hover:underline">FAQs</a></li>
+            <li><a href="#" class="hover:underline">Track Order</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-medium mb-4">About JussyFashions</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">About Us</a></li>
+            <li><a href="#" class="hover:underline">Careers</a></li>
+            <li><a href="#" class="hover:underline">Sustainability</a></li>
+            <li><a href="#" class="hover:underline">Press</a></li>
+            <li><a href="#" class="hover:underline">Affiliates</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-medium mb-4">Legal</h3>
+          <ul class="space-y-2">
+            <li><a href="#" class="hover:underline">Terms & Conditions</a></li>
+            <li><a href="#" class="hover:underline">Privacy Policy</a></li>
+            <li><a href="#" class="hover:underline">Cookie Policy</a></li>
+            <li><a href="#" class="hover:underline">Accessibility</a></li>
+          </ul>
+        </div>
+        
+        <div>
+          <h3 class="text-lg font-medium mb-4">Contact</h3>
+          <ul class="space-y-2">
+            <li>Email: <a href="mailto:info@jussyfashions.com" class="hover:underline">info@jussyfashions.com</a></li>
+            <li>Phone: +1 (888) 555-1234</li>
+            <li class="pt-4">
+              <div class="flex space-x-4">
+                <a href="#" class="hover:opacity-75"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#" class="hover:opacity-75"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#" class="hover:opacity-75"><i class="fa-brands fa-twitter"></i></a>
+                <a href="#" class="hover:opacity-75"><i class="fa-brands fa-pinterest-p"></i></a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="pt-8 border-t border-gray-300 text-center text-sm text-gray-600">
+        <p>© 2023 JussyFashions. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu toggle
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    mobileMenuToggle.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+    });
+    
+    // Search toggle
+    const searchToggle = document.getElementById('search-toggle');
+    const searchBar = document.getElementById('search-bar');
+    
+    searchToggle.addEventListener('click', () => {
+      searchBar.classList.toggle('open');
+    });
+    
+    // Close search when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!searchToggle.contains(e.target) && !searchBar.contains(e.target)) {
+        searchBar.classList.remove('open');
+      }
+    });
+  </script>
+</body>
+</html>
